@@ -1,0 +1,751 @@
+{
+  "tests": {
+    "CE2_CM2": {
+      "Mathematiques": [
+        {
+          "question": "Si une horloge indique 3h45, combien de minutes se sont écoulées depuis midi ?",
+          "options": [
+            "225 min",
+            "135 min",
+            "195 min",
+            "245 min"
+          ],
+          "correct_answer": "225 min"
+        },
+        {
+          "question": "Calcule : 3/4 + 2/8",
+          "options": [
+            "1",
+            "5/8",
+            "7/8",
+            "3/8"
+          ],
+          "correct_answer": "7/8"
+        },
+        {
+          "question": "Un film commence à 18h20 et finit à 20h45. Quelle est sa durée ?",
+          "options": [
+            "2h15",
+            "2h25",
+            "2h35",
+            "2h05"
+          ],
+          "correct_answer": "2h25"
+        },
+        {
+          "question": "Partage 24 cahiers équitablement entre 6 élèves.",
+          "options": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "correct_answer": "6"
+        },
+        {
+          "question": "Réduis la fraction 18/24.",
+          "options": [
+            "3/4",
+            "2/3",
+            "6/8",
+            "9/12"
+          ],
+          "correct_answer": "3/4"
+        }
+      ],
+      "Francais": [
+        {
+          "question": "Quel est le synonyme de rapide ?",
+          "options": [
+            "Lent",
+            "Vif",
+            "Faible",
+            "Pesant"
+          ],
+          "correct_answer": "Vif"
+        },
+        {
+          "question": "Complète : « Les enfants … au parc. »",
+          "options": [
+            "jouent",
+            "joue",
+            "joues",
+            "jouer"
+          ],
+          "correct_answer": "jouent"
+        },
+        {
+          "question": "Quel est le féminin de chanteur ?",
+          "options": [
+            "Chanteuse",
+            "Chantresse",
+            "Chantée",
+            "Chantine"
+          ],
+          "correct_answer": "Chanteuse"
+        },
+        {
+          "question": "Trouve l’adjectif dans : « Le chat noir dort. »",
+          "options": [
+            "chat",
+            "noir",
+            "dort",
+            "le"
+          ],
+          "correct_answer": "noir"
+        },
+        {
+          "question": "Quelle phrase est correcte ?",
+          "options": [
+            "Il mangent une pomme.",
+            "Ils mangent une pomme.",
+            "Il mangez une pomme.",
+            "Ils manges une pomme."
+          ],
+          "correct_answer": "Ils mangent une pomme."
+        }
+      ],
+      "CultureGenerale": [
+        {
+          "question": "Combien y a-t-il de continents ?",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "correct_answer": "7"
+        },
+        {
+          "question": "Quelle est la capitale de la Côte d’Ivoire ?",
+          "options": [
+            "Abidjan",
+            "Yamoussoukro",
+            "Bouaké",
+            "Korhogo"
+          ],
+          "correct_answer": "Yamoussoukro"
+        },
+        {
+          "question": "Qui a inventé l’ampoule électrique ?",
+          "options": [
+            "Newton",
+            "Edison",
+            "Einstein",
+            "Franklin"
+          ],
+          "correct_answer": "Edison"
+        },
+        {
+          "question": "Quel est l’animal le plus rapide du monde ?",
+          "options": [
+            "Lion",
+            "Guépard",
+            "Aigle",
+            "Cheval"
+          ],
+          "correct_answer": "Guépard"
+        },
+        {
+          "question": "Le drapeau ivoirien comporte :",
+          "options": [
+            "2 couleurs",
+            "3 couleurs",
+            "4 couleurs",
+            "5 couleurs"
+          ],
+          "correct_answer": "3 couleurs"
+        }
+      ]
+    },
+    "6e_3e": {
+      "Mathematiques": [
+        {
+          "question": "Développe : (x+3)(x+2)",
+          "options": [
+            "x²+6x+5",
+            "x²+5x+6",
+            "x²+3x+2",
+            "x²+2x+3"
+          ],
+          "correct_answer": "x²+5x+6"
+        },
+        {
+          "question": "Calcule : 3/4 - 2/5",
+          "options": [
+            "7/20",
+            "7/10",
+            "15/20",
+            "1/20"
+          ],
+          "correct_answer": "7/20"
+        },
+        {
+          "question": "Résous : 2x+5=15",
+          "options": [
+            "5",
+            "10",
+            "2.5",
+            "7.5"
+          ],
+          "correct_answer": "5"
+        },
+        {
+          "question": "Un triangle a pour côtés 5, 12, 13 cm. Il est :",
+          "options": [
+            "Isocèle",
+            "Équilatéral",
+            "Rectangle",
+            "Aucun"
+          ],
+          "correct_answer": "Rectangle"
+        },
+        {
+          "question": "La valeur de (a-b)² est :",
+          "options": [
+            "a²-b²",
+            "a²+b²-2ab",
+            "a²-2ab+b²",
+            "b et c"
+          ],
+          "correct_answer": "a²-2ab+b²"
+        }
+      ],
+      "Francais": [
+        {
+          "question": "Verbe conjugué dans « Ils étaient fatigués » :",
+          "options": [
+            "Ils",
+            "étaient",
+            "fatigués",
+            "aucun"
+          ],
+          "correct_answer": "étaient"
+        },
+        {
+          "question": "Synonyme de joyeux :",
+          "options": [
+            "Triste",
+            "Gai",
+            "Peureux",
+            "Fâché"
+          ],
+          "correct_answer": "Gai"
+        },
+        {
+          "question": "Phrase correcte :",
+          "options": [
+            "Je les a vus.",
+            "Je les ai vu.",
+            "Je les ai vus.",
+            "Je les aient vus."
+          ],
+          "correct_answer": "Je les ai vus."
+        },
+        {
+          "question": "Proposition subordonnée dans « L’homme qui parle est mon oncle » :",
+          "options": [
+            "L’homme",
+            "qui parle",
+            "est mon oncle",
+            "aucun"
+          ],
+          "correct_answer": "qui parle"
+        },
+        {
+          "question": "Antonyme de courage :",
+          "options": [
+            "lâcheté",
+            "force",
+            "bravoure",
+            "peur"
+          ],
+          "correct_answer": "lâcheté"
+        }
+      ],
+      "CultureGenerale": [
+        {
+          "question": "Nombre de pays en Afrique :",
+          "options": [
+            "52",
+            "54",
+            "56",
+            "60"
+          ],
+          "correct_answer": "54"
+        },
+        {
+          "question": "Plus long fleuve du monde :",
+          "options": [
+            "Amazone",
+            "Nil",
+            "Mississippi",
+            "Yangtsé"
+          ],
+          "correct_answer": "Nil"
+        },
+        {
+          "question": "Indépendance de la Côte d’Ivoire :",
+          "options": [
+            "1958",
+            "1960",
+            "1962",
+            "1965"
+          ],
+          "correct_answer": "1960"
+        },
+        {
+          "question": "Père de la philosophie :",
+          "options": [
+            "Aristote",
+            "Platon",
+            "Socrate",
+            "Descartes"
+          ],
+          "correct_answer": "Socrate"
+        },
+        {
+          "question": "Vainqueur de la Coupe du Monde 2018 :",
+          "options": [
+            "Brésil",
+            "Allemagne",
+            "France",
+            "Argentine"
+          ],
+          "correct_answer": "France"
+        }
+      ]
+    },
+    "Seconde_A_Terminale_A1A2": {
+      "Mathematiques": [
+        {
+          "question": "Développe : (2x-3)(x+4)",
+          "options": [
+            "2x²+5x-12",
+            "2x²+8x-3x-12",
+            "2x²+11x-12",
+            "2x²+5x+12"
+          ],
+          "correct_answer": "2x²+5x-12"
+        },
+        {
+          "question": "Résous : 5x-7=3x+9",
+          "options": [
+            "x=8",
+            "x=16",
+            "x=-8",
+            "x=2"
+          ],
+          "correct_answer": "x=8"
+        },
+        {
+          "question": "La médiane d’une série : 5, 7, 9, 12, 13, 14 est :",
+          "options": [
+            "9",
+            "10.5",
+            "12",
+            "7"
+          ],
+          "correct_answer": "10.5"
+        },
+        {
+          "question": "Le discriminant de l’équation x²-6x+5=0 est :",
+          "options": [
+            "36-20=16",
+            "25",
+            "11",
+            "9"
+          ],
+          "correct_answer": "16"
+        },
+        {
+          "question": "Un triangle équilatéral de côté 6 cm a une aire de :",
+          "options": [
+            "9√3",
+            "18√3",
+            "12√3",
+            "6√3"
+          ],
+          "correct_answer": "9√3"
+        }
+      ],
+      "Francais": [
+        {
+          "question": "Auteur de 'Germinal' :",
+          "options": [
+            "Balzac",
+            "Zola",
+            "Molière",
+            "Flaubert"
+          ],
+          "correct_answer": "Zola"
+        },
+        {
+          "question": "Type de discours visant à convaincre :",
+          "options": [
+            "Narratif",
+            "Descriptif",
+            "Argumentatif",
+            "Explicatif"
+          ],
+          "correct_answer": "Argumentatif"
+        },
+        {
+          "question": "Synonyme de 'convoquer' :",
+          "options": [
+            "Appeler",
+            "Éloigner",
+            "Rejeter",
+            "Ignorer"
+          ],
+          "correct_answer": "Appeler"
+        },
+        {
+          "question": "Figure de style dans : 'Le silence était assourdissant' :",
+          "options": [
+            "Métaphore",
+            "Hyperbole",
+            "Personnification",
+            "Comparaison"
+          ],
+          "correct_answer": "Oxymore"
+        },
+        {
+          "question": "Antonyme de 'superficiel' :",
+          "options": [
+            "Profond",
+            "Haut",
+            "Large",
+            "Rapide"
+          ],
+          "correct_answer": "Profond"
+        }
+      ],
+      "CultureGenerale": [
+        {
+          "question": "L'ONU a été créée en :",
+          "options": [
+            "1940",
+            "1945",
+            "1950",
+            "1960"
+          ],
+          "correct_answer": "1945"
+        },
+        {
+          "question": "Capitale de l'Éthiopie :",
+          "options": [
+            "Nairobi",
+            "Addis-Abeba",
+            "Kigali",
+            "Dakar"
+          ],
+          "correct_answer": "Addis-Abeba"
+        },
+        {
+          "question": "Langue la plus parlée au monde :",
+          "options": [
+            "Français",
+            "Espagnol",
+            "Chinois mandarin",
+            "Anglais"
+          ],
+          "correct_answer": "Chinois mandarin"
+        },
+        {
+          "question": "Auteur de 'Le Prince' :",
+          "options": [
+            "Hobbes",
+            "Machiavel",
+            "Descartes",
+            "Aristote"
+          ],
+          "correct_answer": "Machiavel"
+        },
+        {
+          "question": "La plus grande île du monde :",
+          "options": [
+            "Madagascar",
+            "Groenland",
+            "Australie",
+            "Sumatra"
+          ],
+          "correct_answer": "Groenland"
+        }
+      ],
+      "Philosophie": [
+        {
+          "question": "Qui a écrit 'Le contrat social' ?",
+          "options": [
+            "Locke",
+            "Rousseau",
+            "Montesquieu",
+            "Hobbes"
+          ],
+          "correct_answer": "Rousseau"
+        },
+        {
+          "question": "L'allégorie de la caverne est développée par :",
+          "options": [
+            "Aristote",
+            "Socrate",
+            "Platon",
+            "Descartes"
+          ],
+          "correct_answer": "Platon"
+        },
+        {
+          "question": "Kant associe la morale à :",
+          "options": [
+            "La raison",
+            "Le plaisir",
+            "La foi",
+            "L’instinct"
+          ],
+          "correct_answer": "La raison"
+        },
+        {
+          "question": "Descartes est célèbre pour :",
+          "options": [
+            "Je pense donc je suis",
+            "L’être est et le non-être n’est pas",
+            "L’homme est un loup pour l’homme",
+            "Le doute radical"
+          ],
+          "correct_answer": "Je pense donc je suis"
+        },
+        {
+          "question": "Pour Nietzsche, la morale traditionnelle est :",
+          "options": [
+            "Une force",
+            "Une faiblesse",
+            "Une vérité absolue",
+            "Une science"
+          ],
+          "correct_answer": "Une faiblesse"
+        }
+      ],
+      "Anglais": [
+        {
+          "question": "Choose the correct tense: 'By next year, I … my studies.'",
+          "options": [
+            "complete",
+            "will complete",
+            "will have completed",
+            "completed"
+          ],
+          "correct_answer": "will have completed"
+        },
+        {
+          "question": "Find the synonym of 'huge':",
+          "options": [
+            "tiny",
+            "enormous",
+            "small",
+            "narrow"
+          ],
+          "correct_answer": "enormous"
+        },
+        {
+          "question": "Which sentence is correct?",
+          "options": [
+            "She don’t like coffee.",
+            "She doesn’t likes coffee.",
+            "She doesn’t like coffee.",
+            "She not like coffee."
+          ],
+          "correct_answer": "She doesn’t like coffee."
+        },
+        {
+          "question": "The opposite of 'optimistic' is:",
+          "options": [
+            "pessimistic",
+            "realistic",
+            "hopeful",
+            "positive"
+          ],
+          "correct_answer": "pessimistic"
+        },
+        {
+          "question": "Choose the right preposition: 'She is good … math.'",
+          "options": [
+            "in",
+            "at",
+            "on",
+            "with"
+          ],
+          "correct_answer": "at"
+        }
+      ]
+    },
+    "SecondeC_TerminaleCD": {
+      "Mathematiques": [
+        {
+          "question": "Simplifie : (x²-9)/(x-3)",
+          "options": [
+            "x+3",
+            "x-3",
+            "x²-3",
+            "x+9"
+          ],
+          "correct_answer": "x+3"
+        },
+        {
+          "question": "Résous : 2x²-8=0",
+          "options": [
+            "±2",
+            "±4",
+            "±√2",
+            "0"
+          ],
+          "correct_answer": "±2"
+        },
+        {
+          "question": "La dérivée de f(x)=3x²-4x est :",
+          "options": [
+            "6x-4",
+            "3x-4",
+            "6x²-4",
+            "x²-4x"
+          ],
+          "correct_answer": "6x-4"
+        },
+        {
+          "question": "Dans un plan, deux droites parallèles ont :",
+          "options": [
+            "Un point commun",
+            "Aucun point commun",
+            "Deux points communs",
+            "Infinités de points"
+          ],
+          "correct_answer": "Aucun point commun"
+        },
+        {
+          "question": "Le volume d’une sphère de rayon r est :",
+          "options": [
+            "4/3 πr³",
+            "πr²",
+            "2πr",
+            "3/4 πr³"
+          ],
+          "correct_answer": "4/3 πr³"
+        }
+      ],
+      "Physique": [
+        {
+          "question": "La vitesse se calcule par :",
+          "options": [
+            "v=d/t",
+            "v=t/d",
+            "v=d×t",
+            "v=d²/t"
+          ],
+          "correct_answer": "v=d/t"
+        },
+        {
+          "question": "Unité de la force :",
+          "options": [
+            "Joule",
+            "Newton",
+            "Watt",
+            "Pascal"
+          ],
+          "correct_answer": "Newton"
+        },
+        {
+          "question": "Charge de l’électron :",
+          "options": [
+            "positive",
+            "négative",
+            "neutre",
+            "double"
+          ],
+          "correct_answer": "négative"
+        },
+        {
+          "question": "La lumière se propage :",
+          "options": [
+            "en ligne droite",
+            "en cercle",
+            "en spirale",
+            "au hasard"
+          ],
+          "correct_answer": "en ligne droite"
+        },
+        {
+          "question": "Énergie cinétique :",
+          "options": [
+            "1/2 mv²",
+            "mv",
+            "mgh",
+            "F×d"
+          ],
+          "correct_answer": "1/2 mv²"
+        }
+      ],
+      "SVT": [
+        {
+          "question": "Unité de base du vivant :",
+          "options": [
+            "cellule",
+            "atome",
+            "molécule",
+            "organe"
+          ],
+          "correct_answer": "cellule"
+        },
+        {
+          "question": "La photosynthèse produit :",
+          "options": [
+            "CO2",
+            "Oxygène",
+            "Azote",
+            "Fer"
+          ],
+          "correct_answer": "Oxygène"
+        },
+        {
+          "question": "ADN signifie :",
+          "options": [
+            "Acide Désoxyribonucléique",
+            "Acide Nucléique",
+            "Acide Ribonucléique",
+            "Aucune"
+          ],
+          "correct_answer": "Acide Désoxyribonucléique"
+        },
+        {
+          "question": "L’organe qui filtre le sang :",
+          "options": [
+            "Foie",
+            "Rein",
+            "Cœur",
+            "Poumon"
+          ],
+          "correct_answer": "Rein"
+        },
+        {
+          "question": "L’organe de la respiration :",
+          "options": [
+            "Poumon",
+            "Cœur",
+            "Rein",
+            "Estomac"
+          ],
+          "correct_answer": "Poumon"
+        }
+      ],
+      "Francais": [
+        {
+          "question": "Auteur de 'Le Cid' :",
+          "options": [
+            "Corneille",
+            "Molière",
+            "Racine"
+          ],
+          "correct_answer": ".........."
+        }
+      ]
+    }
+  }
+}
