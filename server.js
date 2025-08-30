@@ -10,16 +10,23 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Servir les fichiers statiques en production
-if (process.env.NODE_ENV === 'production') {
-  // Servir les fichiers statiques du build
-  app.use(express.static(path.join(__dirname, 'dist')));
-  
-  // Gérer le routage SPA
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-  });
-}
+// Servir les fichiers statiques
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Servir les fichiers statiques pour les sous-dossiers
+app.use('/js', express.static(path.join(__dirname, 'dist', 'js')));
+app.use('/css', express.static(path.join(__dirname, 'dist', 'css')));
+app.use('/img', express.static(path.join(__dirname, 'dist', 'img')));
+
+// Gérer le routage SPA - seulement pour les requêtes qui ne sont pas des fichiers statiques
+app.get('*', (req, res, next) => {
+  // Si la requête est pour un fichier statique, laisse express le gérer
+  if (req.path.includes('.') && !req.path.endsWith('/')) {
+    return next();
+  }
+  // Sinon, renvoie index.html
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // Chemin vers le fichier results.json
 const resultsPath = path.join(__dirname, 'src', 'assets', 'json', 'results.json');
