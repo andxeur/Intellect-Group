@@ -2,6 +2,11 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 const cors = require('cors');
+const multer = require('multer');
+const { put } = require('@vercel/blob');
+
+// Configuration de multer pour gérer les uploads de fichiers
+const upload = multer({ storage: multer.memoryStorage() });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -14,15 +19,71 @@ app.use(express.static('dist')); // Servir les fichiers statiques Vue.js
 // Stockage en mémoire pour Vercel (les données ne persistent pas entre les déploiements)
 let resultsData = { results: [] };
 
-// Exemple avec Vercel KV (décommentez si vous voulez utiliser Vercel KV)
-// const { kv } = require('@vercel/kv');
+// Nom du fichier JSON dans Vercel Blob pour stocker les résultats
+const RESULTS_BLOB_NAME = 'quiz-results.json';
+
+// Fonction pour charger les résultats depuis Vercel Blob
+async function loadResultsFromBlob() {
+  try {
+    if (process.env.VERCEL) {
+      const { list } = require('@vercel/blob');
+      const { blobs } = await list();
+      
+      // Chercher le fichier results.json dans les blobs
+      const resultsBlob = blobs.find(blob => blob.pathname === RESULTS_BLOB_NAME);
+      
+      if (resultsBlob) {
+        // Télécharger et lire le contenu du fichier
+        const response = await fetch(resultsBlob.url);
+        const data = await response.json();
+        resultsData = data;
+        console.log('📥 Données chargées depuis Vercel Blob');
+        return data;
+      } else {
+        // Créer un fichier initial si il n'existe pas
+        const initialData = { results: [] };
+        await saveResultsToBlob(initialData);
+        resultsData = initialData;
+        console.log('📝 Fichier initial créé dans Vercel Blob');
+        return initialData;
+      }
+    }
+  } catch (error) {
+    console.error('❌ Erreur lors du chargement depuis Blob:', error);
+    // En cas d'erreur, utiliser les données en mémoire
+    return resultsData;
+  }
+}
+
+// Fonction pour sauvegarder les résultats vers Vercel Blob
+async function saveResultsToBlob(data) {
+  try {
+    if (process.env.VERCEL) {
+      const { put } = require('@vercel/blob');
+      
+      // Convertir les données en JSON
+      const jsonData = JSON.stringify(data, null, 2);
+      const buffer = Buffer.from(jsonData, 'utf8');
+      
+      // Upload vers Vercel Blob
+      await put(RESULTS_BLOB_NAME, buffer, {
+        access: 'public',
+        addRandomSuffix: false, // Garder le même nom de fichier
+      });
+      
+      console.log('💾 Données sauvegardées vers Vercel Blob');
+    }
+  } catch (error) {
+    console.error('❌ Erreur lors de la sauvegarde vers Blob:', error);
+  }
+}
 
 // Chemin vers le fichier results.json (seulement pour le développement local)
 const resultsPath = path.join(__dirname, 'src', 'assets', 'json', 'results.json');
 
 // Fonction utilitaire pour s'assurer que le fichier results.json existe (développement local uniquement)
 async function ensureResultsFile() {
-  // Sur Vercel, on utilise le stockage en mémoire
+  // Sur Vercel, on utilise Vercel Blob
   if (process.env.VERCEL) {
     return;
   }
@@ -50,14 +111,16 @@ app.post('/api/save-results', async (req, res) => {
     };
     
     if (process.env.VERCEL) {
-      // Sur Vercel, utiliser le stockage en mémoire
-      // ⚠️ ATTENTION: Ces données seront perdues à chaque redémarrage !
+      // Sur Vercel, charger les données existantes depuis Blob
+      await loadResultsFromBlob();
+      
+      // Ajouter le nouveau résultat
       resultsData.results.push(resultWithId);
       
-      // Pour persister les données, utilisez Vercel KV :
-      // await kv.set('results', JSON.stringify(resultsData));
+      // Sauvegarder vers Vercel Blob
+      await saveResultsToBlob(resultsData);
       
-      console.log('⚠️ Données stockées en mémoire - elles seront perdues au redémarrage');
+      console.log('✅ Résultat sauvegardé dans Vercel Blob:', resultWithId.userInfo?.nom, resultWithId.userInfo?.prenom);
     } else {
       // En développement local, sauvegarder dans le fichier
       await ensureResultsFile();
@@ -73,8 +136,8 @@ app.post('/api/save-results', async (req, res) => {
       success: true, 
       message: 'Résultats sauvegardés avec succès',
       resultId: resultWithId.id,
-      totalResults: process.env.VERCEL ? resultsData.results.length : (await fs.readFile(resultsPath, 'utf8')).results.length,
-      warning: process.env.VERCEL ? 'Données stockées en mémoire - non persistantes' : null
+      totalResults: resultsData.results.length,
+      storage: process.env.VERCEL ? 'Vercel Blob (persistant)' : 'Fichier local'
     });
     
   } catch (error) {
@@ -91,8 +154,9 @@ app.post('/api/save-results', async (req, res) => {
 app.get('/api/results', async (req, res) => {
   try {
     if (process.env.VERCEL) {
-      // Sur Vercel, retourner les données en mémoire
-      res.json(resultsData);
+      // Sur Vercel, charger depuis Blob
+      const data = await loadResultsFromBlob();
+      res.json(data);
     } else {
       // En développement local, lire depuis le fichier
       const fileContent = await fs.readFile(resultsPath, 'utf8');
@@ -114,7 +178,7 @@ app.get('/api/results/:id', async (req, res) => {
   try {
     let data;
     if (process.env.VERCEL) {
-      data = resultsData;
+      data = await loadResultsFromBlob();
     } else {
       const fileContent = await fs.readFile(resultsPath, 'utf8');
       data = JSON.parse(fileContent);
@@ -146,7 +210,9 @@ app.delete('/api/results/:id', async (req, res) => {
     const resultId = req.params.id;
     
     if (process.env.VERCEL) {
-      // Sur Vercel, utiliser le stockage en mémoire
+      // Sur Vercel, charger depuis Blob
+      await loadResultsFromBlob();
+      
       const resultIndex = resultsData.results.findIndex(r => r.id === resultId);
       
       if (resultIndex === -1) {
@@ -158,6 +224,9 @@ app.delete('/api/results/:id', async (req, res) => {
       
       const deletedResult = resultsData.results[resultIndex];
       resultsData.results.splice(resultIndex, 1);
+      
+      // Sauvegarder les modifications vers Blob
+      await saveResultsToBlob(resultsData);
       
       console.log(`🗑️ Résultat supprimé: ${deletedResult.userInfo?.nom} ${deletedResult.userInfo?.prenom} (ID: ${resultId})`);
       
@@ -210,9 +279,13 @@ app.delete('/api/results/:id', async (req, res) => {
 app.delete('/api/results', async (req, res) => {
   try {
     if (process.env.VERCEL) {
-      // Sur Vercel, vider les données en mémoire
+      // Sur Vercel, vider les données et sauvegarder vers Blob
+      await loadResultsFromBlob();
       const deletedCount = resultsData.results.length;
       resultsData.results = [];
+      
+      // Sauvegarder les modifications vers Blob
+      await saveResultsToBlob(resultsData);
       
       console.log(`🗑️ Tous les résultats supprimés: ${deletedCount} résultats effacés`);
       
@@ -245,6 +318,102 @@ app.delete('/api/results', async (req, res) => {
     res.status(500).json({ 
       success: false, 
       message: 'Erreur lors de la suppression de tous les résultats',
+      error: error.message
+    });
+  }
+});
+
+// Routes pour Vercel Blob
+app.post('/api/upload', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'Aucun fichier fourni'
+      });
+    }
+
+    // Créer un nom de fichier unique
+    const timestamp = Date.now();
+    const originalName = req.file.originalname;
+    const extension = path.extname(originalName);
+    const fileName = `${timestamp}-${path.basename(originalName, extension)}${extension}`;
+
+    // Upload vers Vercel Blob
+    const blob = await put(fileName, req.file.buffer, {
+      access: 'public',
+    });
+
+    console.log(`📁 Fichier uploadé: ${originalName} -> ${blob.url}`);
+
+    res.json({
+      success: true,
+      message: 'Fichier uploadé avec succès',
+      url: blob.url,
+      pathname: blob.pathname,
+      size: blob.size,
+      uploadedAt: blob.uploadedAt,
+      originalName: originalName
+    });
+
+  } catch (error) {
+    console.error('❌ Erreur lors de l\'upload:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erreur lors de l\'upload du fichier',
+      error: error.message
+    });
+  }
+});
+
+// Route pour supprimer un fichier de Vercel Blob
+app.delete('/api/upload/:pathname', async (req, res) => {
+  try {
+    const { del } = require('@vercel/blob');
+    const pathname = req.params.pathname;
+    
+    await del(pathname);
+    
+    console.log(`🗑️ Fichier supprimé: ${pathname}`);
+    
+    res.json({
+      success: true,
+      message: 'Fichier supprimé avec succès',
+      pathname: pathname
+    });
+
+  } catch (error) {
+    console.error('❌ Erreur lors de la suppression:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erreur lors de la suppression du fichier',
+      error: error.message
+    });
+  }
+});
+
+// Route pour lister les fichiers (optionnel)
+app.get('/api/files', async (req, res) => {
+  try {
+    const { list } = require('@vercel/blob');
+    
+    const { blobs } = await list();
+    
+    res.json({
+      success: true,
+      files: blobs.map(blob => ({
+        url: blob.url,
+        pathname: blob.pathname,
+        size: blob.size,
+        uploadedAt: blob.uploadedAt
+      }))
+    });
+
+  } catch (error) {
+    console.error('❌ Erreur lors de la récupération des fichiers:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erreur lors de la récupération des fichiers',
       error: error.message
     });
   }
