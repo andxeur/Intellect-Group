@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-# /dist - Commenté pour permettre le déploiement Vercel
+/dist
 
 
 # local env files

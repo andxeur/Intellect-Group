@@ -5,10 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "start": "node server.js",
+    "start": "node api/server.js",
     "dev": "concurrently \"npm run serve\" \"npm run start\"",
     "build:prod": "npm run build && npm run start",
-    "vercel-build": "npm install && npm run build"
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "vue": "^3.2.13",
