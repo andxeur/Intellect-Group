@@ -190,7 +190,18 @@ app.delete('/api/results', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
-  console.log(`API disponible sur http://localhost:${PORT}/api/`);
+// Gérer les routes SPA (toutes les requêtes non-API)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
+
+// Export pour Vercel
+module.exports = app;
+
+// Démarrer le serveur en local
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Serveur démarré sur http://localhost:${PORT}`);
+    console.log(`API disponible sur http://localhost:${PORT}/api/`);
+  });
+}

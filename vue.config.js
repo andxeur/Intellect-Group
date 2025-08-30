@@ -1,11 +1,13 @@
 const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+  outputDir: 'dist',
   transpileDependencies: true,
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: process.env.NODE_ENV === 'production' ? 'https://votre-nom-de-domaine.vercel.app' : 'http://localhost:3001',
         changeOrigin: true,
         secure: false
       }
