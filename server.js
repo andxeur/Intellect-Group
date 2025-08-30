@@ -9,7 +9,17 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('dist')); // Servir les fichiers statiques Vue.js
+
+// Servir les fichiers statiques en production
+if (process.env.NODE_ENV === 'production') {
+  // Servir les fichiers statiques du build
+  app.use(express.static(path.join(__dirname, 'dist')));
+  
+  // Gérer le routage SPA
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
+}
 
 // Chemin vers le fichier results.json
 const resultsPath = path.join(__dirname, 'src', 'assets', 'json', 'results.json');
