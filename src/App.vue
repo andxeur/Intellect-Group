@@ -166,7 +166,7 @@
               <div class="quiz-info">
                 <div class="info-item">
                   <img src="./assets/image/clock.svg" alt="Durée">
-                  <span>20 minutes</span>
+                  <span>5 minutes</span>
                 </div>
                 <div class="info-item">
                   <img src="./assets/image/file.svg" alt="Questions">

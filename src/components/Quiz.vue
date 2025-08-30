@@ -69,7 +69,7 @@
     <div v-if="showTimeUp" class="time-up-container">
       <div class="time-up-card">
         <h2>⏰ Temps écoulé !</h2>
-        <p>Malheureusement, le temps imparti de 20 minutes est écoulé.</p>
+        <p>Malheureusement, le temps imparti de 5 minutes est écoulé.</p>
         <p class="failure-message">Vous avez échoué à cette évaluation.</p>
         <div class="time-up-actions">
           <button @click="goBack" class="back-button-timeup">Retour au menu</button>
@@ -137,8 +137,8 @@ const selectedClass = ref('')
 const currentSubject = ref('')
 const subjectScores = ref({})
 
-// Timer (20 minutes = 1200 secondes)
-const timeLeft = ref(1200)
+// Timer (5 minutes = 300 secondes)
+const timeLeft = ref(300)
 const timerInterval = ref(null)
 const startTime = ref(null)
 
@@ -164,9 +164,9 @@ const formattedTime = computed(() => {
 
 // Couleur du timer selon le temps restant
 const timerColor = computed(() => {
-  if (timeLeft.value <= 300) return '#f44336' // Rouge si moins de 5 minutes
-  if (timeLeft.value <= 600) return '#ff9800' // Orange si moins de 10 minutes
-  return '#4CAF50' // Vert sinon
+  if (timeLeft.value <= 60) return '#f44336' // 🔴 Rouge si moins de 1 minute
+  if (timeLeft.value <= 150) return '#ff9800' // 🟠 Orange si moins de 2.5 minutes
+  return '#4CAF50' // 🟢 Vert sinon
 })
 
 // Initialisation du quiz
@@ -301,7 +301,7 @@ function resetQuiz() {
   showTimeUp.value = false
   subjectScores.value = {}
   currentSubject.value = ''
-  timeLeft.value = 1200
+  timeLeft.value = 300
 }
 
 // Fonctions de gestion du timer
