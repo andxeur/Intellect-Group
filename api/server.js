@@ -79,7 +79,7 @@ async function saveResultsToBlob(data) {
 }
 
 // Chemin vers le fichier results.json (seulement pour le développement local)
-const resultsPath = path.join(__dirname, 'src', 'assets', 'json', 'results.json');
+const resultsPath = path.join(__dirname, '..', 'src', 'assets', 'json', 'results.json');
 
 // Fonction utilitaire pour s'assurer que le fichier results.json existe (développement local uniquement)
 async function ensureResultsFile() {
@@ -102,44 +102,33 @@ async function ensureResultsFile() {
 app.post('/api/save-results', async (req, res) => {
   try {
     const newResult = req.body;
-    
-    // Ajouter le nouveau résultat avec un ID unique
+    const classe = newResult.quizInfo?.classe;
     const resultWithId = {
       id: Date.now().toString(),
       timestamp: new Date().toISOString(),
       ...newResult
     };
-    
     if (process.env.VERCEL) {
-      // Sur Vercel, charger les données existantes depuis Blob
       await loadResultsFromBlob();
-      
-      // Ajouter le nouveau résultat
-      resultsData.results.push(resultWithId);
-      
-      // Sauvegarder vers Vercel Blob
+      if (!resultsData[classe]) resultsData[classe] = [];
+      resultsData[classe].push(resultWithId);
       await saveResultsToBlob(resultsData);
-      
       console.log('✅ Résultat sauvegardé dans Vercel Blob:', resultWithId.userInfo?.nom, resultWithId.userInfo?.prenom);
     } else {
-      // En développement local, sauvegarder dans le fichier
       await ensureResultsFile();
       const fileContent = await fs.readFile(resultsPath, 'utf8');
-      const existingData = JSON.parse(fileContent);
-      existingData.results.push(resultWithId);
+      let existingData = JSON.parse(fileContent);
+      if (!existingData[classe]) existingData[classe] = [];
+      existingData[classe].push(resultWithId);
       await fs.writeFile(resultsPath, JSON.stringify(existingData, null, 2), 'utf8');
     }
-    
     console.log('✅ Résultat sauvegardé:', resultWithId.userInfo?.nom, resultWithId.userInfo?.prenom);
-    
     res.json({ 
       success: true, 
       message: 'Résultats sauvegardés avec succès',
       resultId: resultWithId.id,
-      totalResults: resultsData.results.length,
       storage: process.env.VERCEL ? 'Vercel Blob (persistant)' : 'Fichier local'
     });
-    
   } catch (error) {
     console.error('❌ Erreur lors de la sauvegarde:', error);
     res.status(500).json({ 
@@ -318,6 +307,44 @@ app.delete('/api/results', async (req, res) => {
     res.status(500).json({ 
       success: false, 
       message: 'Erreur lors de la suppression de tous les résultats',
+      error: error.message
+    });
+  }
+});
+
+// Route pour vérifier si un utilisateur a déjà participé
+app.post('/api/check-user', async (req, res) => {
+  try {
+    const { nom, prenom, classe } = req.body;
+    if (!nom || !prenom || !classe) {
+      return res.status(400).json({
+        success: false,
+        message: 'Nom, prénom et classe requis'
+      });
+    }
+    let existingData;
+    if (process.env.VERCEL) {
+      await loadResultsFromBlob();
+      existingData = resultsData;
+    } else {
+      await ensureResultsFile();
+      const fileContent = await fs.readFile(resultsPath, 'utf8');
+      existingData = JSON.parse(fileContent);
+    }
+    const userExists = (existingData[classe] || []).some(result => 
+      result.userInfo.nom.toLowerCase() === nom.toLowerCase() && 
+      result.userInfo.prenom.toLowerCase() === prenom.toLowerCase()
+    );
+    res.json({
+      success: true,
+      exists: userExists,
+      message: userExists ? 'Utilisateur déjà existant' : 'Utilisateur autorisé'
+    });
+  } catch (error) {
+    console.error('❌ Erreur lors de la vérification:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Erreur lors de la vérification',
       error: error.message
     });
   }

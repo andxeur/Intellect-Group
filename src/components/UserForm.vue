@@ -53,6 +53,10 @@ const props = defineProps({
   userInfo: {
     type: Object,
     default: () => ({ nom: '', prenom: '' })
+  },
+  selectedClassName: {
+    type: String,
+    default: ''
   }
 })
 
@@ -88,7 +92,7 @@ const validateField = (field, value) => {
 }
 
 // Validation et soumission du formulaire
-const validateAndSubmit = () => {
+const validateAndSubmit = async () => {
   // Reset des erreurs
   formErrors.value = { nom: '', prenom: '' }
   
@@ -99,12 +103,43 @@ const validateAndSubmit = () => {
   if (nomError) formErrors.value.nom = nomError
   if (prenomError) formErrors.value.prenom = prenomError
   
-  // Si pas d'erreurs, émettre l'événement de soumission
+  // Si pas d'erreurs, vérifier si l'utilisateur a déjà participé
   if (!nomError && !prenomError) {
-    emit('submit', {
-      nom: localUserInfo.value.nom.trim(),
-      prenom: localUserInfo.value.prenom.trim()
-    })
+    try {
+      // Vérifier si l'utilisateur existe déjà
+      const response = await fetch('/api/check-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nom: localUserInfo.value.nom.trim(),
+          prenom: localUserInfo.value.prenom.trim(),
+          classe: props.selectedClassName
+        })
+      })
+      
+      if (response.ok) {
+        const result = await response.json()
+        
+        if (result.exists) {
+          // L'utilisateur a déjà participé
+          alert(`❌ Désolé, ${localUserInfo.value.prenom} ${localUserInfo.value.nom} a déjà participé à cette évaluation pour cette classe.\n\n📞 Pour toute question, contactez l'administrateur au :\n+225 05 02 14 46 23`)
+          return
+        } else {
+          // L'utilisateur peut participer
+          emit('submit', {
+            nom: localUserInfo.value.nom.trim(),
+            prenom: localUserInfo.value.prenom.trim()
+          })
+        }
+      } else {
+        throw new Error('Erreur lors de la vérification')
+      }
+    } catch (error) {
+      console.error('Erreur lors de la vérification:', error)
+      alert('❌ Erreur lors de la vérification. Veuillez réessayer.')
+    }
   }
 }
 </script>

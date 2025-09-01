@@ -106,7 +106,6 @@
         </div>
         
         <div class="results-actions">
-          <button @click="restartQuiz" class="restart-button">Recommencer</button>
           <button @click="goBack" class="back-button-results">Retour au menu</button>
         </div>
       </div>
@@ -322,14 +321,21 @@ function stopTimer() {
   }
 }
 
-function timeUp() {
+async function timeUp() {
   stopTimer()
+  
+  // Sauvegarder les résultats même si le temps est écoulé
+  if (userAnswers.value.length > 0) {
+    console.log('⏰ Temps écoulé - Sauvegarde des réponses partielles...')
+    await saveResults(true) // true = temps écoulé
+  }
+  
   showTimeUp.value = true
   showResults.value = false
 }
 
 // Fonction de sauvegarde des résultats (UNIQUEMENT via serveur backend)
-async function saveResults() {
+async function saveResults(timeExpired = false) {
   const endTime = new Date()
   const duration = Math.round((endTime - startTime.value) / 1000) // en secondes
   
@@ -344,7 +350,10 @@ async function saveResults() {
       duration: duration,
       totalQuestions: totalQuestions.value,
       score: score.value,
-      scorePercentage: scorePercentage.value
+      scorePercentage: scorePercentage.value,
+      timeExpired: timeExpired,
+      questionsAnswered: userAnswers.value.length,
+      completionPercentage: Math.round((userAnswers.value.length / totalQuestions.value) * 100)
     },
     subjectScores: subjectScores.value,
     answers: userAnswers.value
@@ -369,7 +378,11 @@ async function saveResults() {
       console.log(`📈 Total participants: ${result.totalResults}`)
       
       // Afficher un message de confirmation à l'utilisateur
-      alert('✅ Vos résultats ont été enregistrés avec succès!\n\nMerci d\'avoir participé au quiz Intellect Group.')
+      if (timeExpired) {
+        alert('⏰ Temps écoulé - Vos réponses partielles ont été enregistrées.\n\n📊 Questions répondues : ' + userAnswers.value.length + '/' + totalQuestions.value + '\n\nMerci d\'avoir participé au quiz Intellect Group.')
+      } else {
+        alert('✅ Vos résultats ont été enregistrés avec succès!\n\nMerci d\'avoir participé au quiz Intellect Group.')
+      }
       
     } else {
       throw new Error(`Erreur serveur: ${response.status}`)
@@ -385,8 +398,28 @@ async function saveResults() {
 // Seul l'admin peut accéder aux résultats via le panneau d'administration
 
 function goBack() {
-  stopTimer()
-  emit('back')
+  if (!showResults.value && !showTimeUp.value) {
+    if (confirm('Si vous quittez, les questions non répondues seront comptées comme 0. Voulez-vous continuer ?')) {
+      // Compléter les réponses manquantes
+      while (userAnswers.value.length < totalQuestions.value) {
+        const q = questions.value[userAnswers.value.length];
+        userAnswers.value.push({
+          question: q.question,
+          selectedAnswer: null,
+          correctAnswer: q.correct_answer,
+          isCorrect: false,
+          subject: q.subject
+        });
+      }
+      // Sauvegarder comme si le temps était écoulé
+      saveResults(true);
+      stopTimer();
+      emit('back');
+    }
+  } else {
+    stopTimer();
+    emit('back');
+  }
 }
 </script>
 

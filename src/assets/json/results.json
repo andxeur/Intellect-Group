@@ -1,3 +1,575 @@
 {
-  "results": []
+  "CE2 à CM2": [
+    {
+      "id": "1756680787346",
+      "timestamp": "2025-08-31T22:53:07.346Z",
+      "userInfo": {
+        "nom": "andre",
+        "prenom": "ae"
+      },
+      "quizInfo": {
+        "classe": "CE2 à CM2",
+        "date": "2025-08-31T22:53:07.333Z",
+        "duration": 31,
+        "totalQuestions": 15,
+        "score": 2,
+        "scorePercentage": 13,
+        "timeExpired": false,
+        "questionsAnswered": 15,
+        "completionPercentage": 100
+      },
+      "subjectScores": {
+        "CultureGenerale": {
+          "correct": 0,
+          "total": 5
+        },
+        "Francais": {
+          "correct": 0,
+          "total": 5
+        },
+        "Mathematiques": {
+          "correct": 2,
+          "total": 5
+        }
+      },
+      "answers": [
+        {
+          "question": "Quel est l’animal le plus rapide du monde ?",
+          "selectedAnswer": "Cheval",
+          "correctAnswer": "Guépard",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Quel est le féminin de chanteur ?",
+          "selectedAnswer": "Chantine",
+          "correctAnswer": "Chanteuse",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Quelle est la capitale de la Côte d’Ivoire ?",
+          "selectedAnswer": "Korhogo",
+          "correctAnswer": "Yamoussoukro",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Quelle phrase est correcte ?",
+          "selectedAnswer": "Ils manges une pomme.",
+          "correctAnswer": "Ils mangent une pomme.",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Calcule : 3/4 + 2/8",
+          "selectedAnswer": "3/8",
+          "correctAnswer": "7/8",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Réduis la fraction 18/24.",
+          "selectedAnswer": "9/12",
+          "correctAnswer": "3/4",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Combien y a-t-il de continents ?",
+          "selectedAnswer": "8",
+          "correctAnswer": "7",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Le drapeau ivoirien comporte :",
+          "selectedAnswer": "5 couleurs",
+          "correctAnswer": "3 couleurs",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Si une horloge indique 3h45, combien de minutes se sont écoulées depuis midi ?",
+          "selectedAnswer": "245 min",
+          "correctAnswer": "225 min",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Un film commence à 18h20 et finit à 20h45. Quelle est sa durée ?",
+          "selectedAnswer": "2h25",
+          "correctAnswer": "2h25",
+          "isCorrect": true,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Complète : « Les enfants … au parc. »",
+          "selectedAnswer": "jouer",
+          "correctAnswer": "jouent",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Quel est le synonyme de rapide ?",
+          "selectedAnswer": "Pesant",
+          "correctAnswer": "Vif",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Trouve l’adjectif dans : « Le chat noir dort. »",
+          "selectedAnswer": "le",
+          "correctAnswer": "noir",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Partage 24 cahiers équitablement entre 6 élèves.",
+          "selectedAnswer": "6",
+          "correctAnswer": "6",
+          "isCorrect": true,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Qui a inventé l’ampoule électrique ?",
+          "selectedAnswer": "Franklin",
+          "correctAnswer": "Edison",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        }
+      ]
+    },
+    {
+      "id": "1756680906682",
+      "timestamp": "2025-08-31T22:55:06.682Z",
+      "userInfo": {
+        "nom": "aaaaa",
+        "prenom": "aaaaaaaaaa"
+      },
+      "quizInfo": {
+        "classe": "CE2 à CM2",
+        "date": "2025-08-31T22:55:06.652Z",
+        "duration": 17,
+        "totalQuestions": 15,
+        "score": 0,
+        "scorePercentage": 0,
+        "timeExpired": true,
+        "questionsAnswered": 15,
+        "completionPercentage": 100
+      },
+      "subjectScores": {
+        "Mathematiques": {
+          "correct": 0,
+          "total": 1
+        },
+        "Francais": {
+          "correct": 0,
+          "total": 1
+        }
+      },
+      "answers": [
+        {
+          "question": "Un film commence à 18h20 et finit à 20h45. Quelle est sa durée ?",
+          "selectedAnswer": "2h35",
+          "correctAnswer": "2h25",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Trouve l’adjectif dans : « Le chat noir dort. »",
+          "selectedAnswer": "le",
+          "correctAnswer": "noir",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Qui a inventé l’ampoule électrique ?",
+          "selectedAnswer": null,
+          "correctAnswer": "Edison",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Complète : « Les enfants … au parc. »",
+          "selectedAnswer": null,
+          "correctAnswer": "jouent",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Le drapeau ivoirien comporte :",
+          "selectedAnswer": null,
+          "correctAnswer": "3 couleurs",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Quelle est la capitale de la Côte d’Ivoire ?",
+          "selectedAnswer": null,
+          "correctAnswer": "Yamoussoukro",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Quel est le synonyme de rapide ?",
+          "selectedAnswer": null,
+          "correctAnswer": "Vif",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Combien y a-t-il de continents ?",
+          "selectedAnswer": null,
+          "correctAnswer": "7",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Quelle phrase est correcte ?",
+          "selectedAnswer": null,
+          "correctAnswer": "Ils mangent une pomme.",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Réduis la fraction 18/24.",
+          "selectedAnswer": null,
+          "correctAnswer": "3/4",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Quel est le féminin de chanteur ?",
+          "selectedAnswer": null,
+          "correctAnswer": "Chanteuse",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Partage 24 cahiers équitablement entre 6 élèves.",
+          "selectedAnswer": null,
+          "correctAnswer": "6",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Si une horloge indique 3h45, combien de minutes se sont écoulées depuis midi ?",
+          "selectedAnswer": null,
+          "correctAnswer": "225 min",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Calcule : 3/4 + 2/8",
+          "selectedAnswer": null,
+          "correctAnswer": "7/8",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Quel est l’animal le plus rapide du monde ?",
+          "selectedAnswer": null,
+          "correctAnswer": "Guépard",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        }
+      ]
+    }
+  ],
+  "Série D": [
+    {
+      "id": "1756681802005",
+      "timestamp": "2025-08-31T23:10:02.005Z",
+      "userInfo": {
+        "nom": "andre",
+        "prenom": "ae"
+      },
+      "quizInfo": {
+        "classe": "Série D",
+        "date": "2025-08-31T23:10:01.977Z",
+        "duration": 35,
+        "totalQuestions": 16,
+        "score": 0,
+        "scorePercentage": 0,
+        "timeExpired": false,
+        "questionsAnswered": 16,
+        "completionPercentage": 100
+      },
+      "subjectScores": {
+        "Mathematiques": {
+          "correct": 0,
+          "total": 5
+        },
+        "Francais": {
+          "correct": 0,
+          "total": 1
+        },
+        "SVT": {
+          "correct": 0,
+          "total": 5
+        },
+        "Physique": {
+          "correct": 0,
+          "total": 5
+        }
+      },
+      "answers": [
+        {
+          "question": "Dans un plan, deux droites parallèles ont :",
+          "selectedAnswer": "Deux points communs",
+          "correctAnswer": "Aucun point commun",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Auteur de 'Le Cid' :",
+          "selectedAnswer": "Racine",
+          "correctAnswer": "..........",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Résous : 2x²-8=0",
+          "selectedAnswer": "±√2",
+          "correctAnswer": "±2",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "ADN signifie :",
+          "selectedAnswer": "Aucune",
+          "correctAnswer": "Acide Désoxyribonucléique",
+          "isCorrect": false,
+          "subject": "SVT"
+        },
+        {
+          "question": "Le volume d’une sphère de rayon r est :",
+          "selectedAnswer": "3/4 πr³",
+          "correctAnswer": "4/3 πr³",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "L’organe qui filtre le sang :",
+          "selectedAnswer": "Poumon",
+          "correctAnswer": "Rein",
+          "isCorrect": false,
+          "subject": "SVT"
+        },
+        {
+          "question": "La lumière se propage :",
+          "selectedAnswer": "au hasard",
+          "correctAnswer": "en ligne droite",
+          "isCorrect": false,
+          "subject": "Physique"
+        },
+        {
+          "question": "Énergie cinétique :",
+          "selectedAnswer": "F×d",
+          "correctAnswer": "1/2 mv²",
+          "isCorrect": false,
+          "subject": "Physique"
+        },
+        {
+          "question": "Charge de l’électron :",
+          "selectedAnswer": "double",
+          "correctAnswer": "négative",
+          "isCorrect": false,
+          "subject": "Physique"
+        },
+        {
+          "question": "Unité de base du vivant :",
+          "selectedAnswer": "organe",
+          "correctAnswer": "cellule",
+          "isCorrect": false,
+          "subject": "SVT"
+        },
+        {
+          "question": "L’organe de la respiration :",
+          "selectedAnswer": "Estomac",
+          "correctAnswer": "Poumon",
+          "isCorrect": false,
+          "subject": "SVT"
+        },
+        {
+          "question": "La photosynthèse produit :",
+          "selectedAnswer": "Fer",
+          "correctAnswer": "Oxygène",
+          "isCorrect": false,
+          "subject": "SVT"
+        },
+        {
+          "question": "Unité de la force :",
+          "selectedAnswer": "Pascal",
+          "correctAnswer": "Newton",
+          "isCorrect": false,
+          "subject": "Physique"
+        },
+        {
+          "question": "La dérivée de f(x)=3x²-4x est :",
+          "selectedAnswer": "x²-4x",
+          "correctAnswer": "6x-4",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Simplifie : (x²-9)/(x-3)",
+          "selectedAnswer": "x+9",
+          "correctAnswer": "x+3",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "La vitesse se calcule par :",
+          "selectedAnswer": "v=d²/t",
+          "correctAnswer": "v=d/t",
+          "isCorrect": false,
+          "subject": "Physique"
+        }
+      ]
+    }
+  ],
+  "6ème à 3ème": [
+    {
+      "id": "1756681926739",
+      "timestamp": "2025-08-31T23:12:06.740Z",
+      "userInfo": {
+        "nom": "andre",
+        "prenom": "ae"
+      },
+      "quizInfo": {
+        "classe": "6ème à 3ème",
+        "date": "2025-08-31T23:12:06.710Z",
+        "duration": 42,
+        "totalQuestions": 15,
+        "score": 4,
+        "scorePercentage": 27,
+        "timeExpired": true,
+        "questionsAnswered": 15,
+        "completionPercentage": 100
+      },
+      "subjectScores": {
+        "Mathematiques": {
+          "correct": 1,
+          "total": 3
+        },
+        "Francais": {
+          "correct": 1,
+          "total": 1
+        },
+        "CultureGenerale": {
+          "correct": 2,
+          "total": 2
+        }
+      },
+      "answers": [
+        {
+          "question": "Un triangle a pour côtés 5, 12, 13 cm. Il est :",
+          "selectedAnswer": "Isocèle",
+          "correctAnswer": "Rectangle",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "La valeur de (a-b)² est :",
+          "selectedAnswer": "a²-2ab+b²",
+          "correctAnswer": "a²-2ab+b²",
+          "isCorrect": true,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Calcule : 3/4 - 2/5",
+          "selectedAnswer": "1/20",
+          "correctAnswer": "7/20",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Proposition subordonnée dans « L’homme qui parle est mon oncle » :",
+          "selectedAnswer": "qui parle",
+          "correctAnswer": "qui parle",
+          "isCorrect": true,
+          "subject": "Francais"
+        },
+        {
+          "question": "Nombre de pays en Afrique :",
+          "selectedAnswer": "54",
+          "correctAnswer": "54",
+          "isCorrect": true,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Plus long fleuve du monde :",
+          "selectedAnswer": "Nil",
+          "correctAnswer": "Nil",
+          "isCorrect": true,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Père de la philosophie :",
+          "selectedAnswer": null,
+          "correctAnswer": "Socrate",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Vainqueur de la Coupe du Monde 2018 :",
+          "selectedAnswer": null,
+          "correctAnswer": "France",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Phrase correcte :",
+          "selectedAnswer": null,
+          "correctAnswer": "Je les ai vus.",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Synonyme de joyeux :",
+          "selectedAnswer": null,
+          "correctAnswer": "Gai",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Résous : 2x+5=15",
+          "selectedAnswer": null,
+          "correctAnswer": "5",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Verbe conjugué dans « Ils étaient fatigués » :",
+          "selectedAnswer": null,
+          "correctAnswer": "étaient",
+          "isCorrect": false,
+          "subject": "Francais"
+        },
+        {
+          "question": "Développe : (x+3)(x+2)",
+          "selectedAnswer": null,
+          "correctAnswer": "x²+5x+6",
+          "isCorrect": false,
+          "subject": "Mathematiques"
+        },
+        {
+          "question": "Indépendance de la Côte d’Ivoire :",
+          "selectedAnswer": null,
+          "correctAnswer": "1960",
+          "isCorrect": false,
+          "subject": "CultureGenerale"
+        },
+        {
+          "question": "Antonyme de courage :",
+          "selectedAnswer": null,
+          "correctAnswer": "lâcheté",
+          "isCorrect": false,
+          "subject": "Francais"
+        }
+      ]
+    }
+  ]
 }

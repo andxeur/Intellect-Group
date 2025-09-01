@@ -219,11 +219,19 @@ function goBack() {
 async function loadResults() {
   try {
     console.log('🔄 Chargement des résultats depuis le serveur...')
-    
     const response = await fetch('/api/results')
     if (response.ok) {
       const data = await response.json()
-      results.value = data.results || []
+      // Nouvelle structure : data est un objet { classe1: [...], classe2: [...] }
+      let flatResults = []
+      if (data && typeof data === 'object' && !Array.isArray(data)) {
+        Object.values(data).forEach(arr => {
+          if (Array.isArray(arr)) flatResults = flatResults.concat(arr)
+        })
+      } else if (Array.isArray(data.results)) {
+        flatResults = data.results
+      }
+      results.value = flatResults
       console.log(`✅ ${results.value.length} résultats chargés depuis le serveur`)
     } else {
       throw new Error(`Erreur serveur: ${response.status}`)
@@ -231,8 +239,6 @@ async function loadResults() {
   } catch (error) {
     console.error('❌ Impossible de charger les résultats:', error.message)
     results.value = []
-    
-    // Afficher un message d'erreur à l'admin
     alert('❌ ERREUR: Impossible de charger les résultats.\n\n' +
           'Le serveur backend n\'est pas démarré.\n\n' +
           'Pour démarrer le serveur:\n' +

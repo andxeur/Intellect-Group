@@ -218,6 +218,7 @@
   <UserForm 
     :show="showUserForm"
     :userInfo="userInfo"
+    :selectedClassName="selectedClassName"
     @close="closeUserForm"
     @submit="handleUserFormSubmit"
   />
