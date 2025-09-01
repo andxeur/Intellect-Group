@@ -197,33 +197,55 @@ app.get('/api/results/:id', async (req, res) => {
 app.delete('/api/results/:id', async (req, res) => {
   try {
     const resultId = req.params.id;
+    let resultFound = false;
+    let deletedResult = null;
     
     if (process.env.VERCEL) {
       // Sur Vercel, charger depuis Blob
       await loadResultsFromBlob();
       
-      const resultIndex = resultsData.results.findIndex(r => r.id === resultId);
+      // Parcourir chaque classe pour trouver le résultat
+      for (const classe in resultsData) {
+        if (Array.isArray(resultsData[classe])) {
+          const resultIndex = resultsData[classe].findIndex(r => r.id === resultId);
+          
+          if (resultIndex !== -1) {
+            deletedResult = resultsData[classe][resultIndex];
+            resultsData[classe].splice(resultIndex, 1);
+            resultFound = true;
+            
+            // Si la classe est vide après suppression, on peut la supprimer
+            if (resultsData[classe].length === 0) {
+              delete resultsData[classe];
+            }
+            
+            break;
+          }
+        }
+      }
       
-      if (resultIndex === -1) {
+      if (!resultFound) {
         return res.status(404).json({ 
           success: false, 
           message: 'Résultat non trouvé' 
         });
       }
       
-      const deletedResult = resultsData.results[resultIndex];
-      resultsData.results.splice(resultIndex, 1);
-      
       // Sauvegarder les modifications vers Blob
       await saveResultsToBlob(resultsData);
       
       console.log(`🗑️ Résultat supprimé: ${deletedResult.userInfo?.nom} ${deletedResult.userInfo?.prenom} (ID: ${resultId})`);
       
+      // Compter le nombre total de résultats restants
+      const totalResults = Object.values(resultsData).reduce(
+        (total, results) => total + (Array.isArray(results) ? results.length : 0), 0
+      );
+      
       res.json({ 
         success: true, 
         message: 'Résultat supprimé avec succès',
         deletedId: resultId,
-        remainingResults: resultsData.results.length
+        remainingResults: totalResults
       });
     } else {
       // En développement local, supprimer depuis le fichier
@@ -231,26 +253,47 @@ app.delete('/api/results/:id', async (req, res) => {
       const fileContent = await fs.readFile(resultsPath, 'utf8');
       const data = JSON.parse(fileContent);
       
-      const resultIndex = data.results.findIndex(r => r.id === resultId);
+      // Parcourir chaque classe pour trouver le résultat
+      for (const classe in data) {
+        if (Array.isArray(data[classe])) {
+          const resultIndex = data[classe].findIndex(r => r.id === resultId);
+          
+          if (resultIndex !== -1) {
+            deletedResult = data[classe][resultIndex];
+            data[classe].splice(resultIndex, 1);
+            resultFound = true;
+            
+            // Si la classe est vide après suppression, on peut la supprimer
+            if (data[classe].length === 0) {
+              delete data[classe];
+            }
+            
+            break;
+          }
+        }
+      }
       
-      if (resultIndex === -1) {
+      if (!resultFound) {
         return res.status(404).json({ 
           success: false, 
           message: 'Résultat non trouvé' 
         });
       }
       
-      const deletedResult = data.results[resultIndex];
-      data.results.splice(resultIndex, 1);
       await fs.writeFile(resultsPath, JSON.stringify(data, null, 2), 'utf8');
       
       console.log(`🗑️ Résultat supprimé: ${deletedResult.userInfo?.nom} ${deletedResult.userInfo?.prenom} (ID: ${resultId})`);
+      
+      // Compter le nombre total de résultats restants
+      const totalResults = Object.values(data).reduce(
+        (total, results) => total + (Array.isArray(results) ? results.length : 0), 0
+      );
       
       res.json({ 
         success: true, 
         message: 'Résultat supprimé avec succès',
         deletedId: resultId,
-        remainingResults: data.results.length
+        remainingResults: totalResults
       });
     }
     
@@ -270,35 +313,54 @@ app.delete('/api/results', async (req, res) => {
     if (process.env.VERCEL) {
       // Sur Vercel, vider les données et sauvegarder vers Blob
       await loadResultsFromBlob();
-      const deletedCount = resultsData.results.length;
-      resultsData.results = [];
+      
+      // Compter le nombre total de résultats avant suppression
+      let totalDeleted = 0;
+      for (const classe in resultsData) {
+        if (Array.isArray(resultsData[classe])) {
+          totalDeleted += resultsData[classe].length;
+        }
+      }
+      
+      // Réinitialiser à un objet vide
+      resultsData = {};
       
       // Sauvegarder les modifications vers Blob
       await saveResultsToBlob(resultsData);
       
-      console.log(`🗑️ Tous les résultats supprimés: ${deletedCount} résultats effacés`);
+      console.log(`🗑️ Tous les résultats supprimés: ${totalDeleted} résultats effacés`);
       
       res.json({ 
         success: true, 
         message: 'Tous les résultats ont été supprimés avec succès',
-        deletedCount: deletedCount
+        deletedCount: totalDeleted,
+        remainingResults: 0
       });
     } else {
       // En développement local, vider le fichier
       await ensureResultsFile();
       const fileContent = await fs.readFile(resultsPath, 'utf8');
       const data = JSON.parse(fileContent);
-      const deletedCount = data.results.length;
       
-      data.results = [];
-      await fs.writeFile(resultsPath, JSON.stringify(data, null, 2), 'utf8');
+      // Compter le nombre total de résultats avant suppression
+      let totalDeleted = 0;
+      for (const classe in data) {
+        if (Array.isArray(data[classe])) {
+          totalDeleted += data[classe].length;
+        }
+      }
       
-      console.log(`🗑️ Tous les résultats supprimés: ${deletedCount} résultats effacés`);
+      // Réinitialiser à un objet vide
+      const emptyData = {};
+      await fs.writeFile(resultsPath, JSON.stringify(emptyData, null, 2), 'utf8');
+      
+      console.log(`🗑️ Tous les résultats supprimés: ${totalDeleted} résultats effacés`);
       
       res.json({ 
         success: true, 
         message: 'Tous les résultats ont été supprimés avec succès',
-        deletedCount: deletedCount
+        deletedCount: totalDeleted,
+        remainingResults: 0
       });
     }
     
